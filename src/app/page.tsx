@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Header from "@/components/Header/Header";
 import styles from "./page.module.css";
+import Link from "next/link";
 
 function Home() {
   const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ function Home() {
       <Header></Header>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.input}>
-          <label>Nome:</label>
+          <label>Título</label>
           <input
             type="text"
             name="title"
@@ -44,7 +45,7 @@ function Home() {
           />
         </div>
         <div className={styles.input}>
-          <label>Email:</label>
+          <label>Data</label>
           <input
             type="date"
             name="date"
@@ -53,14 +54,16 @@ function Home() {
           />
         </div>
         <div className={styles.input}>
-          <label>Mensagem:</label>
+          <label>Mensagem</label>
           <textarea
             name="message"
             value={formData.message}
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Enviar</button>
+        <button type="submit">
+          <Link href="/data/registers">Enviar</Link>
+        </button>
       </form>
     </>
   );

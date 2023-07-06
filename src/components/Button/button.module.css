@@ -1,0 +1,19 @@
+.button {
+  border: none;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: blueviolet;
+  margin-bottom: 24px;
+  width: 300px;
+}
+
+.button a,
+.button h3 {
+  text-decoration: none;
+  color: white;
+}

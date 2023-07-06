@@ -1,3 +1,11 @@
+import Header from "@/components/Header/Header";
+import Button from "@/components/Button/Button";
+
 export default function Registers() {
-  return <h1>Hello...</h1>;
+  return (
+    <div>
+      <Header></Header>
+      <Button></Button>
+    </div>
+  );
 }
