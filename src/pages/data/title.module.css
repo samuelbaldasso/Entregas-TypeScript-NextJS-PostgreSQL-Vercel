@@ -1,18 +1,19 @@
-.button {
+.block {
   border: none;
   border-radius: 8px;
   padding: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   margin: 0 auto;
   background-color: blueviolet;
   margin-bottom: 24px;
-  width: 300px;
+  width: 768px;
 }
 
-.button h3 {
+.block h3 {
   text-decoration: none;
+  font-family: "Inter", sans-serif;
   color: white;
 }

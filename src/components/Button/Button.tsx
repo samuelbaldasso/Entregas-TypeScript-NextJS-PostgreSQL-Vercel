@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "@/components/Button/button.module.css";
 import Link from "next/link";
@@ -19,7 +18,7 @@ export default function Button() {
   return (
     <div>
       {form.map((e: any) => (
-        <Link key={e?.title} href="#">
+        <Link key={e?.title} href={`/data/${e?.title}`}>
           <button className={styles.button}>
             <h3>{e?.title}</h3>
             <h3>{e?.date}</h3>
