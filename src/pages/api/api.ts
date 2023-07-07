@@ -37,7 +37,7 @@ interface FormData {
   formData: any[];
 }
 
-const filePath = path.join(process.cwd(), '/src/json/data.json');
+const filePath = path.join(process.cwd(), '/src/json');
 
 const saveFormData = async (data: any) => {
   const existingData = await getFormData();
@@ -48,7 +48,7 @@ const saveFormData = async (data: any) => {
 
 const getFormData = async (): Promise<any[]> => {
   try {
-    const jsonData = await fs.readFile(filePath, 'utf8');
+    const jsonData = await fs.readFile(filePath + '/data.json', 'utf8');
     const formData: FormData = JSON.parse(jsonData);
     return formData.formData || [];
   } catch (error) {
