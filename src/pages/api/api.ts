@@ -59,7 +59,7 @@ const getFormData = async (): Promise<any[]> => {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const data = req.body;
-    saveFormData(data);
+    await saveFormData(data);
     res.status(200).json({ message: 'Dados salvos com sucesso.' });
   } else if (req.method === 'GET') {
     const data = await getFormData();
