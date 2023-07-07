@@ -1,20 +1,28 @@
-import { promises as fs } from 'fs';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { promises as fs } from "fs";
+import path from 'path';
 
-const path = require("path");
-
-const filePath = path.join(process.cwd(), "/src/json/data.json");
-
-const saveFormData = async (data: any) => {
-  let arr = [];
-  arr.push(await getFormData());
-  const jsonData = JSON.stringify({ formData: [...arr, data] });
-  await fs.writeFile(filePath, jsonData);
-  arr.push(jsonData);
+interface FormData {
+  formData: any[];
 }
 
-const getFormData = async () => {
-  await fs.readFile(filePath, 'utf8');
+const filePath = path.join(process.cwd(), '/src/json/data.json');
+
+const saveFormData = async (data: any) => {
+  const existingData = await getFormData();
+  const formData: FormData = { formData: [...existingData, data] };
+  const jsonData = JSON.stringify(formData);
+  await fs.writeFile(filePath, jsonData);
+};
+
+const getFormData = async (): Promise<any[]> => {
+  try {
+    const jsonData = await fs.readFile(filePath, 'utf8');
+    const formData: FormData = JSON.parse(jsonData);
+    return formData.formData || [];
+  } catch (error) {
+    return [];
+  }
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -23,10 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     saveFormData(data);
     res.status(200).json({ message: 'Dados salvos com sucesso.' });
   } else if (req.method === 'GET') {
-    const data = await getFormData().then((e: any) => {
-      return JSON.parse(e);
-    });
-    console.log(filePath)
+    const data = await getFormData();
     res.status(200).json(data);
   } else {
     res.status(405).json({ message: 'Método não permitido.' });
