@@ -26,6 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const data = getFormData().then((e: any) => {
       return JSON.parse(e);
     });
+    console.log(filePath)
     res.status(200).json(data);
   } else {
     res.status(405).json({ message: 'Método não permitido.' });
