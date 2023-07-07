@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const path = require("path");
 
-const filePath = path.join(process.cwd(), "/src/json");
+const filePath = path.join(process.cwd(), "/src/json/data.json");
 
 const saveFormData = async (data: any) => {
   let arr = [];
@@ -14,7 +14,7 @@ const saveFormData = async (data: any) => {
 }
 
 const getFormData = async () => {
-  await fs.readFile(filePath + '/data.json', 'utf8');
+  await fs.readFile(filePath, 'utf8');
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
