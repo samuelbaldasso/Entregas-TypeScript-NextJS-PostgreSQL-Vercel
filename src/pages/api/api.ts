@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     saveFormData(data);
     res.status(200).json({ message: 'Dados salvos com sucesso.' });
   } else if (req.method === 'GET') {
-    const data = getFormData().then((e: any) => {
+    const data = await getFormData().then((e: any) => {
       return JSON.parse(e);
     });
     console.log(filePath)
