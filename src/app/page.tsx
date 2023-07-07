@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import Header from "@/components/Header/Header";
 import styles from "./page.module.css";
-import { useRouter } from "next/router";
 
 function Home() {
   const [formData, setFormData] = useState({
@@ -24,6 +23,8 @@ function Home() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    const api = process.env.API_URL;
+    console.log(api);
     if (
       formData.title === "" ||
       formData.date === "" ||
