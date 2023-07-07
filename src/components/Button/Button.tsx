@@ -7,7 +7,7 @@ export default function Button() {
   const [form, setForm] = useState([]);
 
   const handleAPI = async () => {
-    const res = await axios.get(`/api`);
+    const res = await axios.get("/api/api");
     setForm(res.data);
   };
 
@@ -18,7 +18,7 @@ export default function Button() {
   return (
     <div>
       {form.map((e: any) => (
-        <Link key={e?.title} href={`/data/${e?.title}`}>
+        <Link key={e?.title} href={`/data/${e?.date}`}>
           <button className={styles.button}>
             <h3>{e?.title}</h3>
             <h3>{e?.date}</h3>

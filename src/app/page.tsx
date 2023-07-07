@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Header from "@/components/Header/Header";
 import styles from "./page.module.css";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 function Home() {
   const [formData, setFormData] = useState({
@@ -17,52 +17,67 @@ function Home() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    // let button = document.querySelector("button");
+    if (e.target.value !== "") {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // Salve os dados no arquivo JSON usando a API
-    try {
-      await axios.post("/api", formData);
-      console.log("Dados salvos com sucesso.");
-    } catch (error) {
-      console.error("Ocorreu um erro ao salvar os dados:", error);
+    if (
+      formData.title === "" ||
+      formData.date === "" ||
+      formData.message === ""
+    ) {
+      alert("Preencha todos os dados corretamente.");
+      setFormData({ title: "", date: "", message: "" });
+    } else {
+      await axios.post("/api/api", formData);
+      setFormData({ title: "", date: "", message: "" });
+      alert("Seus dados foram salvos.");
     }
   };
 
   return (
     <>
       <Header></Header>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form}>
         <div className={styles.input}>
-          <label>Título</label>
+          <label htmlFor="title">Título</label>
           <input
+            id="title"
             type="text"
+            required={true}
+            minLength={5}
             name="title"
             value={formData.title}
             onChange={handleChange}
           />
         </div>
         <div className={styles.input}>
-          <label>Data</label>
+          <label htmlFor="date">Data</label>
           <input
             type="date"
+            id="date"
             name="date"
+            required={true}
             value={formData.date}
             onChange={handleChange}
           />
         </div>
         <div className={styles.input}>
-          <label>Mensagem</label>
+          <label htmlFor="message">Mensagem</label>
           <textarea
+            id="message"
             name="message"
+            required={true}
+            minLength={5}
             value={formData.message}
             onChange={handleChange}
           />
         </div>
-        <button type="submit">
-          <Link href="/data/registers">Enviar</Link>
+        <button type="submit" onClick={handleSubmit}>
+          Enviar
         </button>
       </form>
     </>
