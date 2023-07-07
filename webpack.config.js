@@ -1,5 +1,3 @@
-module.exports = {
-  resolve: {
-    preferRelative: true,
-  },
+export const resolve = {
+  preferRelative: true,
 };
