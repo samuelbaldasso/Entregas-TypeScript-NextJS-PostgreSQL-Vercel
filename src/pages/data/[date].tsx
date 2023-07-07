@@ -17,9 +17,7 @@ export default function RegistersData() {
   };
 
   useEffect(() => {
-    if (form) {
-      handleAPI();
-    }
+    handleAPI();
   }, []);
 
   return (

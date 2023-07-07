@@ -23,8 +23,6 @@ function Home() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    const api = process.env.API_URL;
-    console.log(api);
     if (
       formData.title === "" ||
       formData.date === "" ||
