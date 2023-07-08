@@ -42,7 +42,6 @@ function Home() {
             required={true}
             minLength={5}
             name="title"
-            value={formData.title}
             onChange={handleChange}
           />
         </div>
@@ -53,7 +52,6 @@ function Home() {
             id="date"
             name="date"
             required={true}
-            value={formData.date}
             onChange={handleChange}
           />
         </div>
@@ -64,7 +62,6 @@ function Home() {
             name="message"
             required={true}
             minLength={5}
-            value={formData.message}
             onChange={handleChange}
           />
         </div>
