@@ -24,7 +24,6 @@ function Home() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
     if (
       formData.title === "" ||
       formData.date === "" ||
@@ -33,6 +32,7 @@ function Home() {
       alert("Preencha todos os dados corretamente.");
       setFormData({ title: "", date: "", message: "" });
     } else {
+      e.preventDefault()
       await axios.post("/api/api", formData);
       setFormData({ title: "", date: "", message: "" });
       alert("Seus dados foram salvos.");
