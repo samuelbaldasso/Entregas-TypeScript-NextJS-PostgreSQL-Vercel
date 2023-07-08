@@ -19,6 +19,7 @@ function Home() {
     // let button = document.querySelector("button");
     if (e.target.value !== "") {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
+      console.log(formData)
     }
   };
 
