@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'POST') {
     const data = req.body;
     try {
-      await saveFormData(data);
+      saveFormData(data);
       res.status(200).json({ message: 'Dados salvos com sucesso.' });
     } catch (error) {
       res.status(500).json({ message: 'Erro ao salvar os dados do formulário.' });
