@@ -6,7 +6,11 @@ import Header from "@/components/Header/Header";
 import styles from "./page.module.css";
 
 function Home() {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    title: "",
+    date: "",
+    message: "",
+  });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -15,19 +19,23 @@ function Home() {
     // let button = document.querySelector("button");
     if (e.target.value !== "") {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
-      console.log(formData);
+      console.log(formData)
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
+    if (
+      formData.title === "" ||
+      formData.date === "" ||
+      formData.message === ""
+    ) {
+      alert("Preencha todos os dados corretamente.");
+      setFormData({ title: "", date: "", message: "" });
+    } else {
       await axios.post("/api/api", formData);
+      setFormData({ title: "", date: "", message: "" });
       alert("Seus dados foram salvos.");
-    } catch (error) {
-      alert("Ocorreu um erro ao salvar os dados. Por favor, tente novamente.");
     }
-    setFormData({ title: "", date: "", message: "" });
   };
 
   return (
@@ -42,6 +50,7 @@ function Home() {
             required={true}
             minLength={5}
             name="title"
+            value={formData.title}
             onChange={handleChange}
           />
         </div>
@@ -52,6 +61,7 @@ function Home() {
             id="date"
             name="date"
             required={true}
+            value={formData.date}
             onChange={handleChange}
           />
         </div>
@@ -62,6 +72,7 @@ function Home() {
             name="message"
             required={true}
             minLength={5}
+            value={formData.message}
             onChange={handleChange}
           />
         </div>
