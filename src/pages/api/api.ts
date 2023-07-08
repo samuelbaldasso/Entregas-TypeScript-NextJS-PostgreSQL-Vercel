@@ -19,7 +19,6 @@ const getFormData = async (): Promise<any[]> => {
   try {
     const jsonData = await fs.readFile(filePath, 'utf8');
     const formData: FormData = JSON.parse(jsonData);
-    console.log(formData)
     return formData.formData || [];
   } catch (error) {
     return [];
@@ -29,7 +28,8 @@ const getFormData = async (): Promise<any[]> => {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const data = req.body;
-    await saveFormData(data);
+    saveFormData(data);
+    console.log(data)
     res.status(200).json({ message: 'Dados salvos com sucesso.' });
   } else if (req.method === 'GET') {
     const data = await getFormData();
