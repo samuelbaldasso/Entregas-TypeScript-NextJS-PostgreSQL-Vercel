@@ -19,6 +19,7 @@ const getFormData = async (): Promise<any[]> => {
   try {
     const jsonData = await fs.readFile(filePath, 'utf8');
     const formData: FormData = JSON.parse(jsonData);
+    console.log(formData.formData)
     return formData.formData || [];
   } catch (error) {
     return [];
