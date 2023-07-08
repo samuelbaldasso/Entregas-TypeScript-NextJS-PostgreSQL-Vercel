@@ -19,24 +19,29 @@ function Home() {
     // let button = document.querySelector("button");
     if (e.target.value !== "") {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
-      console.log(formData)
+      console.log(formData);
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (
       formData.title === "" ||
       formData.date === "" ||
       formData.message === ""
     ) {
       alert("Preencha todos os dados corretamente.");
-      setFormData({ title: "", date: "", message: "" });
-    } else {
-      e.preventDefault()
-      await axios.post("/api/api", formData);
-      setFormData({ title: "", date: "", message: "" });
-      alert("Seus dados foram salvos.");
+      return;
     }
+    try {
+      await axios.post("/api/api", formData);
+      alert("Seus dados foram salvos.");
+    } catch (error) {
+      console.error("Erro ao enviar os dados:", error);
+      alert("Ocorreu um erro ao salvar os dados. Por favor, tente novamente.");
+    }
+    // Limpar o formulário
+    setFormData({ title: "", date: "", message: "" });
   };
 
   return (
