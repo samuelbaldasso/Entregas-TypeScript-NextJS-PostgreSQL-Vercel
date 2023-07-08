@@ -11,7 +11,7 @@ export default function RegistersData() {
   const handleAPI = async () => {
     const date = router.asPath.split("/")[2];
     const res = await axios.get(`/api/api`);
-    const filteredData = res.data.formData.filter((item: any) => item.date === date);
+    const filteredData = res.data.filter((item: any) => item.date === date);
     setForm(filteredData);
     console.log(form);
   };

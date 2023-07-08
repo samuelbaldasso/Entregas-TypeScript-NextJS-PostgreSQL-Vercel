@@ -9,7 +9,7 @@ export default function Button() {
   const handleAPI = async () => {
     const res = await axios.get("/api/api");
     const formData = res.data;
-    setFormData(formData.formData);
+    setFormData(formData);
   };
 
   useEffect(() => {
