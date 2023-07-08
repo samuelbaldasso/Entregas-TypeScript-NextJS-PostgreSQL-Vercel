@@ -6,11 +6,7 @@ import Header from "@/components/Header/Header";
 import styles from "./page.module.css";
 
 function Home() {
-  const [formData, setFormData] = useState({
-    title: "",
-    date: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({});
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,22 +21,12 @@ function Home() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (
-      formData.title === "" ||
-      formData.date === "" ||
-      formData.message === ""
-    ) {
-      alert("Preencha todos os dados corretamente.");
-      return;
-    }
     try {
       await axios.post("/api/api", formData);
       alert("Seus dados foram salvos.");
     } catch (error) {
-      console.error("Erro ao enviar os dados:", error);
       alert("Ocorreu um erro ao salvar os dados. Por favor, tente novamente.");
     }
-    // Limpar o formulário
     setFormData({ title: "", date: "", message: "" });
   };
 
