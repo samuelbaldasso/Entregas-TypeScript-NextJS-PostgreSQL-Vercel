@@ -12,13 +12,9 @@ const saveFormData = async (data: any) => {
 };
 
 const getFormData = async (): Promise<any[]> => {
-  try {
     const jsonData = await fs.readFile(filePath, 'utf8');
     const formData = JSON.parse(jsonData);
-    return formData.formData || [];
-  } catch (error) {
-    return [];
-  }
+    return formData;
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
