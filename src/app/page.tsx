@@ -33,6 +33,7 @@ function Home() {
         // setFormData({ title: "", date: "", message: "" });
       } else {   
       await axios.post("/api/api", formData);
+      console.log(formData)
       // setFormData({ title: "", date: "", message: "" });
       alert("Seus dados foram salvos.");
     }

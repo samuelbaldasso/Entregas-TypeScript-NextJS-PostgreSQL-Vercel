@@ -10,7 +10,6 @@ export default function Button() {
     const res = await axios.get("/api/api");
     const formData = res.data;
     setFormData(formData);
-    console.log(formData)
   };
 
   useEffect(() => {

@@ -7,17 +7,19 @@ const filePath = path.join(process.cwd(), '/src/json/data.json');
 const saveFormData = async (data: any) => {
   try {
     const existingData = await getFormData();
-    const jsonData = JSON.stringify({ formData: [...existingData, data] });
+    existingData.push(data);
+    const jsonData = JSON.stringify([...existingData]);
     await fs.writeFile(filePath, jsonData);
+    console.log(jsonData);
   } catch (error) {
-    throw new Error('Erro ao salvar os dados do formulário.');
+    console.log(error)
   }
 };
 
 const getFormData = async () => {
   try {
     const jsonData = await fs.readFile(filePath, 'utf8');
-    return JSON.parse(jsonData).formData
+    return JSON.parse(jsonData);
   } catch (error) {
     return [];
   }
