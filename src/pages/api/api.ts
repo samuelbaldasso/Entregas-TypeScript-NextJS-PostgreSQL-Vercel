@@ -6,8 +6,7 @@ const filePath = path.join(process.cwd(), '/src/json/data.json');
 
 const saveFormData = async (data: any) => {
   const existingData = await getFormData();
-  const formData = { formData: [...existingData, data] };
-  const jsonData = JSON.stringify(formData);
+  const jsonData = JSON.stringify(existingData);
   console.log(jsonData);
   await fs.writeFile(filePath, jsonData);
 };
