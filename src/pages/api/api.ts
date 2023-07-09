@@ -8,7 +8,8 @@ const saveFormData = async (data: any) => {
   try {
     const existingData = await getFormData();
     existingData.push(data);
-    const jsonData = JSON.stringify([...existingData, data]);
+    const jsonData = JSON.stringify({formData: [...existingData, data]});
+    console.log(jsonData);
     await fs.writeFile(filePath, jsonData);
   } catch (error) {
     console.log(error)
@@ -23,9 +24,8 @@ const getFormData = async () => {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const data = req.body;
-    console.log(data);
     try {
-      saveFormData(data);
+      await saveFormData(data);
       res.status(200).json({ message: 'Dados salvos com sucesso.' });
     } catch (error) {
       res.status(500).json({ message: 'Erro ao salvar os dados do formulário.' });
