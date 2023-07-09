@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { GetServerSideProps, NextApiRequest, NextApiResponse } from 'next';
 
 const path = require("path");
 
@@ -16,7 +16,7 @@ const getFormData = async () => {
   return await fs.readFile(filePath, 'utf8').then((e)=> JSON.parse(e).formData);
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function getServerSideProps(req: NextApiRequest, res: NextApiResponse) {
   if(req.method === 'POST') {
     const data = req.body;
     saveFormData(data);
