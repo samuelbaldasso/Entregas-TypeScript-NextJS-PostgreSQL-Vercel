@@ -8,14 +8,5 @@
       "source": "/(.*)",
       "destination": "/$1"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/data.json",
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "content-type": "application/json"
-      }
-    }
   ]
 }
