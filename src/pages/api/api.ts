@@ -7,8 +7,7 @@ const filePath = path.join(process.cwd(), '/src/json/data.json');
 const saveFormData = async (data: any) => {
   try {
     const existingData = await getFormData();
-    existingData.push(data);
-    const jsonData = JSON.stringify([...existingData]);
+    const jsonData = JSON.stringify([...existingData, data]);
     await fs.writeFile(filePath, jsonData);
   } catch (error) {
     console.log(error)
