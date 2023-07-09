@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const path = require("path");
 
-const filePath = path.join(process.cwd(), "/var/task/public/data.json");
+const filePath = path.join(process.cwd(), "public/data.json");
 console.log(filePath)
 
 const saveFormData = async (data: any) => {
