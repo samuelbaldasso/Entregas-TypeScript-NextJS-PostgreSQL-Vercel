@@ -1,45 +1,30 @@
 import { promises as fs } from 'fs';
 import { NextApiRequest, NextApiResponse } from 'next';
-import path from 'path';
+
+const path = require("path");
 
 const filePath = path.join(process.cwd(), '/src/json/data.json');
 
 const saveFormData = async (data: any) => {
-  try {
-    const existingData = await getFormData();
-    const jsonData = JSON.stringify({ formData: [...existingData, data] });
-    await fs.writeFile(filePath, jsonData);
-  } catch (error) {
-    throw new Error('Erro ao salvar os dados do formulário.');
-  }
-};
+  let arr = await getFormData();
+  const jsonData = JSON.stringify({ formData: [...arr, data] });
+  await fs.writeFile(filePath, jsonData);
+}
 
 const getFormData = async () => {
-  try {
-    const jsonData = await fs.readFile(filePath, 'utf8');
-    return JSON.parse(jsonData).formData || [];
-  } catch (error) {
-    return [];
-  }
+  return await fs.readFile(filePath, 'utf8').then((e)=> JSON.parse(e).formData);
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'POST') {
+  if(req.method === 'POST') {
     const data = req.body;
-    try {
-      await saveFormData(data);
-      res.status(200).json({ message: 'Dados salvos com sucesso.' });
-    } catch (error) {
-      res.status(500).json({ message: 'Erro ao salvar os dados do formulário.' });
-    }
+    saveFormData(data);
+    res.status(200).json({ message: 'Dados salvos com sucesso.' });
   } else if (req.method === 'GET') {
-    try {
-      const data = await getFormData();
-      res.status(200).json(data);
-    } catch (error) {
-      res.status(500).json({ message: 'Erro ao obter os dados do formulário.' });
-    }
+    const data = await getFormData()
+    console.log(data);
+    res.status(200).json(data);
   } else {
     res.status(405).json({ message: 'Método não permitido.' });
-  }
+}
 }

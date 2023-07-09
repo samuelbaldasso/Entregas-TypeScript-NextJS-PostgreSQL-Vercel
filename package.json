@@ -9,14 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/body-parser": "^1.19.2",
     "@types/node": "20.4.0",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "axios": "^1.4.0",
+    "body-parser": "^1.20.2",
     "http-proxy-middleware": "^2.0.6",
-    "next": "13.4.8",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "next": "^13.4.9",
+    "next-connect": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typescript": "5.1.6"
   }
 }

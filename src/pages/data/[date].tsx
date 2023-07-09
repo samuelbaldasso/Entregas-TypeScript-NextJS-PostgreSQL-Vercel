@@ -1,15 +1,14 @@
 import Header from "@/components/Header/Header";
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import styles from "./date.module.css";
+import Router from "next/router";
 
 export default function RegistersData() {
   const [form, setForm] = useState([]);
-  const router = useRouter();
 
   const handleAPI = async () => {
-    const date = router.asPath.split("/")[2];
+    const date = Router.asPath.split("/")[2];
     const res = await axios.get(`/api/api`);
     const filteredData = res.data.filter((item: any) => item.date === date);
     setForm(filteredData);

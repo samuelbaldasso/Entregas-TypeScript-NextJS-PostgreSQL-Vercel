@@ -16,28 +16,24 @@ function Home() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    // let button = document.querySelector("button");
-    if (e.target.value !== "") {
-      setFormData((prevData) => ({ ...prevData, [name]: value }));
-      console.log(formData);
-    }
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    if (
-      formData.title === "" ||
-      formData.date === "" ||
-      formData.message === ""
-    ) {
-      alert("Preencha todos os dados corretamente.");
-      setFormData({ title: "", date: "", message: "" });
-    } else {
-      e.preventDefault();
+    // e.preventDefault();
+    // if (
+    //   formData.title === "" ||
+    //   formData.date === "" ||
+    //   formData.message === ""
+    // ) {
+    //   alert("Preencha todos os dados corretamente.");
+    //   // setFormData({ title: "", date: "", message: "" });
+    // } else {
       await axios.post("/api/api", formData);
-      setFormData({ title: "", date: "", message: "" });
+      console.log(formData);
       alert("Seus dados foram salvos.");
+      // setFormData({ title: "", date: "", message: "" });
     }
-  };
 
   return (
     <>
@@ -77,7 +73,7 @@ function Home() {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" onSubmit={handleSubmit}>
+        <button type="submit" onClick={handleSubmit}>
           Enviar
         </button>
       </form>
