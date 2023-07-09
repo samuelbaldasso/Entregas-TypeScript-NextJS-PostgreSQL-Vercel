@@ -3,12 +3,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const path = require("path");
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
 const filePath = path.join(process.cwd(), '/tmp/src/json/data.json');
 
 const saveFormData = async (data: any) => {
