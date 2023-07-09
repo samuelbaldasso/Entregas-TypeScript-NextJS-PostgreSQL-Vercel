@@ -13,11 +13,14 @@ const saveFormData = async (data: any) => {
 }
 
 const getFormData = async () => {
-  return await fs.readFile(filePath, 'utf8').then((e)=> JSON.parse(e).formData);
+  return await fs.readFile(filePath, 'utf8').then((e) => JSON.parse(e).formData);
 };
 
 export default async function getServerSideProps(req: NextApiRequest, res: NextApiResponse) {
-  if(req.method === 'POST') {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'POST') {
     const data = req.body;
     saveFormData(data);
     res.status(200).json({ message: 'Dados salvos com sucesso.' });
@@ -27,5 +30,5 @@ export default async function getServerSideProps(req: NextApiRequest, res: NextA
     res.status(200).json(data);
   } else {
     res.status(405).json({ message: 'Método não permitido.' });
-}
+  }
 }
