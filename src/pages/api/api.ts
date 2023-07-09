@@ -1,9 +1,9 @@
 import { promises as fs } from 'fs';
-import { GetServerSideProps, NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const path = require("path");
 
-const filePath = path.join(process.cwd(), "/public/data/data.json");
+const filePath = path.join(process.cwd(), "/src/pages/api/data.json");
 console.log(filePath)
 
 const saveFormData = async (data: any) => {
