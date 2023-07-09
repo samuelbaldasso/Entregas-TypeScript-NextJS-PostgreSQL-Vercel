@@ -11,11 +11,10 @@
   ],
   "routes": [
     {
-      "/api/data.json": {
-        "headers": {
-          "Access-Control-Allow-Origin": "*",
-          "content-type": "application/json"
-        }
+      "src": "/api/data.json",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "content-type": "application/json"
       }
     }
   ]
