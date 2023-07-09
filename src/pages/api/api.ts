@@ -17,19 +17,16 @@ const saveFormData = async (data: any) => {
 };
 
 const getFormData = async () => {
-  try {
     const jsonData = await fs.readFile(filePath, 'utf8');
+    console.log(JSON.parse(jsonData));
     return JSON.parse(jsonData);
-  } catch (error) {
-    return [];
-  }
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const data = req.body;
     try {
-      saveFormData(data);
+      await saveFormData(data);
       res.status(200).json({ message: 'Dados salvos com sucesso.' });
     } catch (error) {
       res.status(500).json({ message: 'Erro ao salvar os dados do formulário.' });
