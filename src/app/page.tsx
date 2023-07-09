@@ -24,16 +24,17 @@ function Home() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (
       formData.title === "" ||
       formData.date === "" ||
       formData.message === ""
       ) {
         alert("Preencha todos os dados corretamente.");
-        // setFormData({ title: "", date: "", message: "" });
+        setFormData({ title: "", date: "", message: "" });
       } else {   
       await axios.post("/api/api", formData);
-      // setFormData({ title: "", date: "", message: "" });
+      setFormData({ title: "", date: "", message: "" });
       alert("Seus dados foram salvos.");
     }
   };
@@ -76,7 +77,7 @@ function Home() {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" onClick={handleSubmit}>
+        <button type="submit" onSubmit={handleSubmit}>
           Enviar
         </button>
       </form>
