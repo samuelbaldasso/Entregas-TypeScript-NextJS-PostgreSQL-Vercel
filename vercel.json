@@ -9,12 +9,14 @@
       "destination": "/$1"
     }
   ],
-  "routes": {
-    "/api/data.json": {
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "content-type": "application/json"
+  "routes": [
+    {
+      "/api/data.json": {
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "content-type": "application/json"
+        }
       }
     }
-  }
+  ]
 }
