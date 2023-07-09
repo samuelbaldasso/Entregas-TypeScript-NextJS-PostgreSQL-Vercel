@@ -4,12 +4,12 @@ import { NextApiRequest, NextApiResponse } from 'next';
 const path = require("path");
 
 const filePath = path.join(process.cwd(), "/src/pages/api/data.json");
-console.log(filePath)
 
 const saveFormData = async (data: any) => {
   let arr = await getFormData();
   const jsonData = JSON.stringify({ formData: [...arr, data] });
   await fs.writeFile(filePath, jsonData);
+  await fs.chmod(filePath, '0666');
 }
 
 const getFormData = async () => {
@@ -17,9 +17,6 @@ const getFormData = async () => {
 };
 
 export default async function getServerSideProps(req: NextApiRequest, res: NextApiResponse) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'POST') {
     const data = req.body;
     saveFormData(data);
