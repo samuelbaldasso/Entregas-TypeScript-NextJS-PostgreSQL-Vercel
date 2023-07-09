@@ -20,20 +20,20 @@ function Home() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    // e.preventDefault();
-    // if (
-    //   formData.title === "" ||
-    //   formData.date === "" ||
-    //   formData.message === ""
-    // ) {
-    //   alert("Preencha todos os dados corretamente.");
-    //   // setFormData({ title: "", date: "", message: "" });
-    // } else {
-      await axios.post("/api/api", formData);
+    if (
+      formData.title === "" ||
+      formData.date === "" ||
+      formData.message === ""
+    ) {
+      alert("Preencha todos os dados corretamente.");
+      setFormData({ title: "", date: "", message: "" });
+    } else {
+      await axios.post("http://localhost:3001/formData", formData);
       console.log(formData);
       alert("Seus dados foram salvos.");
-      // setFormData({ title: "", date: "", message: "" });
+      setFormData({ title: "", date: "", message: "" });
     }
+  }
 
   return (
     <>
