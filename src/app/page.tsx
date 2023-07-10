@@ -1,84 +1,36 @@
 "use client";
 
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import TaskForm from "../components/Form/form";
 import Header from "@/components/Header/Header";
-import styles from "./page.module.css";
+import fs from "fs";
 
-function Home() {
-  const [formData, setFormData] = useState({
-    title: "",
-    date: "",
-    message: "",
-  });
+const IndexPage: React.FC = () => {
+  const [tasks, setTasks] = useState<any>([]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  const handleSubmit = (task: any) => {
+    setTasks((prevTasks: any[]) => [...prevTasks, task]);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    if (
-      formData.title === "" ||
-      formData.date === "" ||
-      formData.message === ""
-    ) {
-      alert("Preencha todos os dados corretamente.");
-      setFormData({ title: "", date: "", message: "" });
-    } else {
-      await axios.post("http://localhost:3001/formData", formData);
-      console.log(formData);
-      alert("Seus dados foram salvos.");
-      setFormData({ title: "", date: "", message: "" });
+  useEffect(() => {
+    const storedTasks = localStorage.getItem("tasks");
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+      console.log(tasks);
     }
-  }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    // fs.writeFile("/public/db.json", tasks, (err) => console.log(err));
+  }, [tasks]);
 
   return (
-    <>
+    <div>
       <Header></Header>
-      <form className={styles.form}>
-        <div className={styles.input}>
-          <label htmlFor="title">Título</label>
-          <input
-            id="title"
-            type="text"
-            required={true}
-            minLength={5}
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={styles.input}>
-          <label htmlFor="date">Data</label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            required={true}
-            value={formData.date}
-            onChange={handleChange}
-          />
-        </div>
-        <div className={styles.input}>
-          <label htmlFor="message">Mensagem</label>
-          <textarea
-            id="message"
-            name="message"
-            required={true}
-            minLength={5}
-            value={formData.message}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit" onClick={handleSubmit}>
-          Enviar
-        </button>
-      </form>
-    </>
+      <TaskForm onSubmit={handleSubmit} />
+    </div>
   );
-}
+};
 
-export default Home;
+export default IndexPage;

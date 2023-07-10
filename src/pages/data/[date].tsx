@@ -1,19 +1,21 @@
 import Header from "@/components/Header/Header";
-import axios from "axios";
 import { useState, useEffect } from "react";
 import styles from "./id.module.css";
 import Router from "next/router";
 
 export default function RegistersData() {
-  const [form, setForm] = useState([]);
+  const [form, setForm] = useState<any[]>([]);
 
   const handleAPI = async () => {
     const id = Router.asPath.split("/")[2];
-    console.log(id)
-    const res = await axios.get(`http://localhost:3001/formData?id=${id}`);
-    // const filteredData = res.data.filter((item: any) => item.id === id);
-    setForm(res.data);
-    console.log(form);
+    console.log(id);
+    const dados = localStorage.getItem("tasks");
+    if (dados) {
+      let arr = JSON.parse(dados);
+      const filteredData = arr.filter((item: any) => item.date === id);
+      setForm(filteredData);
+      console.log(form);
+    }
   };
 
   useEffect(() => {
@@ -23,12 +25,11 @@ export default function RegistersData() {
   return (
     <div>
       <Header></Header>
-
       {form.map((e: any) => (
-        <div key={e?.id} className={styles.block}>
+        <div key={e?.title} className={styles.block}>
           <h3>{e?.title}</h3>
           <h3>{e?.date}</h3>
-          <h3>{e?.message}</h3>
+          <h3>{e?.description}</h3>
         </div>
       ))}
     </div>
