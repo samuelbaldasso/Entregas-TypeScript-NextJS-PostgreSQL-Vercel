@@ -8,7 +8,8 @@
 .form {
   border: none;
   color: white;
-  margin: 50px;
+  max-width: 768px;
+  margin: 0 auto 50px;
 }
 
 .form,
@@ -41,9 +42,6 @@
   background-color: blueviolet;
   margin-top: 48px;
   width: 100%;
-}
-
-.form button a {
   text-decoration: none;
   color: white;
 }

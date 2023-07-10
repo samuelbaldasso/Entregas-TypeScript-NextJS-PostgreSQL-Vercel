@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import TaskForm from "../components/Form/form";
 import Header from "@/components/Header/Header";
-import fs from "fs";
 
 const IndexPage: React.FC = () => {
   const [tasks, setTasks] = useState<any>([]);
@@ -22,7 +21,6 @@ const IndexPage: React.FC = () => {
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    // fs.writeFile("/public/db.json", tasks, (err) => console.log(err));
   }, [tasks]);
 
   return (
