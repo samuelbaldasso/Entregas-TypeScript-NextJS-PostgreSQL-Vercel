@@ -28,7 +28,6 @@ export default function RegistersData() {
       {form.map((e: any) => (
         <div key={e?.title} className={styles.block}>
           <h3>{e?.title}</h3>
-          <h3>{e?.date}</h3>
           <h3>{e?.description}</h3>
         </div>
       ))}

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import TaskForm from "../components/Form/form";
+import TaskForm from "@/components/Form/form";
 import Header from "@/components/Header/Header";
 import { writeDataToJson } from "./service";
 
