@@ -1,35 +1,15 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import TaskForm from "@/components/Form/form";
-import Header from "@/components/Header/Header";
-import { writeDataToJson } from "./service";
+import Button from "@/pages/data/Button";
+import IndexPage from ".";
+import RegistersData from "@/pages/data/[date]";
 
-const IndexPage: React.FC = () => {
-  const [tasks, setTasks] = useState<any>([]);
-
-  const handleSubmit = (task: any) => {
-    setTasks((prevTasks: any[]) => [...prevTasks, task]);
-  };
-
-  useEffect(() => {
-    const storedTasks = localStorage.getItem("tasks");
-    if (storedTasks) {
-      setTasks(JSON.parse(storedTasks));
-      writeDataToJson(storedTasks);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
+export default function App() {
   return (
-    <div>
-      <Header></Header>
-      <TaskForm onSubmit={handleSubmit} />
-    </div>
+    <>
+      <IndexPage></IndexPage>
+      <Button></Button>
+      <RegistersData></RegistersData>
+    </>
   );
-};
-
-export default IndexPage;
+}
