@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import TaskForm from "../components/Form/form";
 import Header from "@/components/Header/Header";
-import { readJson, writeDataToJson } from "./service";
+import { writeDataToJson } from "./service";
 
 const IndexPage: React.FC = () => {
   const [tasks, setTasks] = useState<any>([]);
@@ -17,7 +17,6 @@ const IndexPage: React.FC = () => {
     if (storedTasks) {
       setTasks(JSON.parse(storedTasks));
       writeDataToJson(storedTasks);
-      readJson();
     }
   }, []);
 
