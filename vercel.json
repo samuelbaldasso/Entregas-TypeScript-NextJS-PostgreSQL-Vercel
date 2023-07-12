@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "next.config.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "env": {
+    "PG_HOST": "@pg_host",
+    "PG_PORT": "@pg_port",
+    "PG_DATABASE": "@pg_database",
+    "PG_USER": "@pg_user",
+    "PG_PASSWORD": "@pg_password"
+  },
+  "envSecrets": {
+    "PG_HOST": "PG_HOST",
+    "PG_PORT": "PG_PORT",
+    "PG_DATABASE": "PG_DATABASE",
+    "PG_USER": "PG_USER",
+    "PG_PASSWORD": "PG_PASSWORD"
+  }
+}

@@ -5,6 +5,7 @@ import Header from "../components/Header/Header";
 import axios from "axios";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
+import { sql } from "@vercel/postgres";
 
 export default function Home() {
   const router = useRouter();

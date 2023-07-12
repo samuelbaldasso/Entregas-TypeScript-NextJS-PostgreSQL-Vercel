@@ -13,6 +13,7 @@
     "@types/node": "20.4.0",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "@vercel/postgres": "^0.4.0",
     "axios": "^1.4.0",
     "body-parser": "^1.20.2",
     "date-fns": "^2.30.0",
