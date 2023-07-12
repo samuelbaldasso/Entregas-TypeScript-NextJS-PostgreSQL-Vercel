@@ -3,6 +3,7 @@ import styles from "./button.module.css";
 import Link from "next/link";
 import Header from "../../components/Header/Header";
 import axios from "axios";
+import { format } from "date-fns";
 
 export default function Button() {
   const [form, setForm] = useState<any>([]);
@@ -10,9 +11,9 @@ export default function Button() {
   const handleData = async () => {
     const res = await axios.get("/api/service");
     const array = res.data;
-    console.log(res.data);
-    let mappedArr = array.map((e: any) => e.date);
-    console.log(mappedArr);
+    let mappedArr = array.map((e: any) =>
+      format(new Date(e.date), "dd-MM-yyyy").toString()
+    );
     mappedArr.sort((n1: any, n2: any) => {
       if (n1 > n2) {
         return 1;
@@ -30,7 +31,6 @@ export default function Button() {
         return self.indexOf(value) === index;
       }
     );
-    console.log(filteredData);
 
     setForm(filteredData);
   };

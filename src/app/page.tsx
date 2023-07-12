@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import axios from "axios";
 import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
     date: "",
@@ -15,11 +17,12 @@ export default function Home() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [e.target.name]: e.target.value,
-    }));
-    console.log(formData);
+    if (e.target.value !== null) {
+      setFormData((prevData) => ({
+        ...prevData,
+        [e.target.name]: e.target.value,
+      }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,7 +38,7 @@ export default function Home() {
       await axios.post("/api/service", formData);
       alert("Seus dados foram salvos.");
       setFormData({ title: "", date: "", message: "" });
-      console.log(formData);
+      router.push("/registers/button");
     }
   };
 

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import styles from "./date.module.css";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { format } from "date-fns";
 
 export default function RegistersData() {
   const [form, setForm] = useState<any>([]);
@@ -11,7 +12,9 @@ export default function RegistersData() {
   const handleAPI = async () => {
     const date = router.asPath.split("/")[2];
     const res = await axios.get("/api/service");
-    const filteredData = res.data.filter((item: any) => item.date === date);
+    const filteredData = res.data.filter((item: any) => {
+      return format(new Date(item.date), "dd-MM-yyyy").toString() === date;
+    });
     setForm(filteredData);
   };
 
