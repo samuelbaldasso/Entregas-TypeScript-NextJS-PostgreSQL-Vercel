@@ -1,20 +1,18 @@
-import Header from "@/components/Header/Header";
+import Header from "../../components/Header/Header";
 import { useState, useEffect } from "react";
-import styles from "./id.module.css";
+import styles from "./date.module.css";
 import { useRouter } from "next/router";
-import { readJson, returnDataByDate } from "@/app/service";
+import axios from "axios";
 
 export default function RegistersData() {
-  const [form, setForm] = useState<any[]>([]);
+  const [form, setForm] = useState<any>([]);
+  const router = useRouter();
 
   const handleAPI = async () => {
-    const router = useRouter();
-    const id = router.asPath.split("/")[2];
-    const dados = await readJson();
-    if (dados) {
-      const filteredData = await returnDataByDate(dados, id);
-      setForm(filteredData);
-    }
+    const date = router.asPath.split("/")[2];
+    const res = await axios.get("/api/service");
+    const filteredData = res.data.filter((item: any) => item.date === date);
+    setForm(filteredData);
   };
 
   useEffect(() => {
@@ -27,7 +25,7 @@ export default function RegistersData() {
       {form.map((e: any) => (
         <div key={e?.title} className={styles.block}>
           <h3>{e?.title}</h3>
-          <h3>{e?.description}</h3>
+          <h3>{e?.message}</h3>
         </div>
       ))}
     </div>

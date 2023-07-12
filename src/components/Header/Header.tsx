@@ -5,17 +5,14 @@ export default function Header() {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <Link className={styles.title} href="/">
-          <h1>Entregas RD</h1>
+        <Link href="/">
+          <h1 className={styles.title}>Entregas RD</h1>
         </Link>
       </div>
       <div className={styles.links}>
-        <Link href="/data/registers" className={styles.link}>
-          Registros
+        <Link href="/registers/button">
+          <h3 className={styles.link}>Registros</h3>
         </Link>
-        {/* <Link className={styles.link} href="#" onClick={handleExport}>
-          Download
-        </Link> */}
       </div>
     </div>
   );
