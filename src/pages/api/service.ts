@@ -6,10 +6,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'POST') {
     const data = req.body;
     insertTask(req, res, data);
-    // res.status(200).json({ message: 'Dados salvos com sucesso.' });
+    res.status(200).json({ message: 'Dados salvos com sucesso.' });
   } else if (req.method === 'GET') {
     const data = await getTasks(req, res);
-    // res.status(200).json(data);
+    res.status(200).json(data);
   } else {
     throw Error("Método não permitido");
   }
@@ -60,7 +60,7 @@ export async function insertTask(req: any, res: any, data: any) {
 export async function getTasks(req: any, res: any) {
   try {
     const result = await sql`SELECT * FROM tasks`;
-
+    return result.rows;
     // // Envie a resposta com os dados retornados
     // res.status(200).json({ result });
   } catch (error) {

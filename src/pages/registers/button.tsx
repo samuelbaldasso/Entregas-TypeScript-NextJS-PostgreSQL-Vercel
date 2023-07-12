@@ -7,11 +7,10 @@ import { format } from "date-fns";
 
 export default function Button() {
   const [form, setForm] = useState<any>([]);
-
+  
   const handleData = async () => {
     const res = await axios.get("/api/service");
-    const array = res.data.rows;
-    let mappedArr = array.map((e: any) =>
+    let mappedArr = res.data.map((e: any) =>
       format(new Date(e.date), "dd-MM-yyyy").toString()
     );
     mappedArr.sort((n1: any, n2: any) => {
@@ -31,7 +30,6 @@ export default function Button() {
         return self.indexOf(value) === index;
       }
     );
-
     setForm(filteredData);
   };
 
