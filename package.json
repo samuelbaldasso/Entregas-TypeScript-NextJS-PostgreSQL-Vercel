@@ -17,6 +17,7 @@
     "axios": "^1.4.0",
     "body-parser": "^1.20.2",
     "date-fns": "^2.30.0",
+    "dotenv": "^16.3.1",
     "fs": "^0.0.1-security",
     "http-proxy-middleware": "^2.0.6",
     "json-server": "^0.17.3",
