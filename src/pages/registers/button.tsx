@@ -10,7 +10,7 @@ export default function Button() {
 
   const handleData = async () => {
     const res = await axios.get("/api/service");
-    const array = res.data;
+    const array = res.data.rows;
     let mappedArr = array.map((e: any) =>
       format(new Date(e.date), "dd-MM-yyyy").toString()
     );

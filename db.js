@@ -1,13 +1,7 @@
-// Importe as dependências
-const { Client } = require('pg');
-require('dotenv').config();
+import pg from "pg";
 
-// Crie uma função para retornar a conexão com o banco de dados
-async function connect() {
-  const client = new Client();
-  await client.connect();
-  return client;
-}
+const { Pool } = pg;
 
-// Exporte a função de conexão
-module.exports = { connect };
+const pool = new Pool({
+  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+});
