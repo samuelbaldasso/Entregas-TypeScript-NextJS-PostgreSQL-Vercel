@@ -7,7 +7,7 @@ const filePath = path.join(process.cwd(), '/data/data.json');
 async function writeDataToJson(data: any) {
   let json = await readJson();
   const formData = [...JSON.parse(json), data];
-  await fs.writeFile(filePath, formData, 'utf-8');
+  await fs.writeFile(filePath, JSON.stringify(formData), 'utf-8');
   console.log('Dados gravados no arquivo JSON com sucesso!');
 }
 

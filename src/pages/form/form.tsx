@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import axios from "axios";
 import styles from "./form.module.css";
 import { useRouter } from "next/navigation";
+import ErrorPage from "@/components/ErrorText/error";
 
 export default function Home() {
   const router = useRouter();
@@ -11,6 +12,7 @@ export default function Home() {
     date: "",
     message: "",
   });
+  const [visible, setVisible] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -30,11 +32,15 @@ export default function Home() {
       formData.date === "" ||
       formData.message === ""
     ) {
-      alert("Preencha todos os dados corretamente.");
+      setVisible(true);
+      const timer = setTimeout(() => {
+        setVisible(false);
+      }, 2000);
       setFormData({ title: "", date: "", message: "" });
+      return () => clearTimeout(timer);
     } else {
+      setVisible(false);
       await axios.post("/api/service", formData);
-      alert("Seus dados foram salvos.");
       setFormData({ title: "", date: "", message: "" });
       router.push("/");
     }
@@ -49,6 +55,7 @@ export default function Home() {
           <input
             type="text"
             name="title"
+            placeholder="Digite uma tarefa qualquer"
             value={formData.title}
             onChange={handleChange}
           />
@@ -56,12 +63,15 @@ export default function Home() {
           <input
             type="date"
             name="date"
+            placeholder="dd/mm/aaaa"
+            min={0}
             value={formData.date}
             onChange={handleChange}
           />
           <label className={styles.legend}>Descrição</label>
           <textarea
             name="message"
+            placeholder="Descreva melhor a sua tarefa"
             value={formData.message}
             onChange={handleChange}
           ></textarea>
@@ -69,6 +79,9 @@ export default function Home() {
         <button type="submit" onClick={handleSubmit}>
           Adicionar
         </button>
+        {visible === true && (
+          <ErrorPage phrase="Preencha todos os dados corretamente." />
+        )}
       </form>
     </>
   );
