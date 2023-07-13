@@ -21,7 +21,7 @@ export default function RegistersData() {
 
   useEffect(() => {
     handleAPI();
-  }, []);
+  }, [form]);
 
   return (
     <div>

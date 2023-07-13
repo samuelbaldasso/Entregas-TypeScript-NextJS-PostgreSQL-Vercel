@@ -10,8 +10,8 @@ export default function Header() {
         </Link>
       </div>
       <div className={styles.links}>
-        <Link href="/registers/button">
-          <h3 className={styles.link}>Registros</h3>
+        <Link href="/form/form">
+          <h3 className={styles.link}>Formulário</h3>
         </Link>
       </div>
     </div>
