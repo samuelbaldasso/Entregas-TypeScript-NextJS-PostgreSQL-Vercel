@@ -45,11 +45,11 @@ export default function Button() {
     <div>
       <Header></Header>
       {form.map((e: any) => (
-        <Link key={e} href={`/data/${e}`}>
-          <button className={styles.button}>
+        <button className={styles.button}>
+          <Link key={e} href={`/data/${e}`}>
             <h3>{e}</h3>
-          </button>
-        </Link>
+          </Link>
+        </button>
       ))}
     </div>
   );
