@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./button.module.css";
 import Link from "next/link";
-import Header from "../../components/Header/Header";
+import Header from "../Header/Header";
 import axios from "axios";
 import { format } from "date-fns";
 
