@@ -1,13 +1,15 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import styles from "./button.module.css";
 import Link from "next/link";
-import Header from "../../components/Header/Header";
+import Header from "../Header/Header";
 import axios from "axios";
 import { format } from "date-fns";
 
 export default function Button() {
   const [form, setForm] = useState<any>([]);
-  
+
   const handleData = async () => {
     const res = await axios.get("/api/service");
     let mappedArr = res.data.map((e: any) =>

@@ -20,13 +20,13 @@ export default function RegistersData() {
 
   useEffect(() => {
     handleAPI();
-  }, []);
+  }, [form]);
 
   return (
     <div>
       <Header></Header>
       {form.map((e: any) => (
-        <div key={e?.title} className={styles.block}>
+        <div key={e?.date} className={styles.block}>
           <h3>{e?.title}</h3>
           <h3>{e?.message}</h3>
         </div>
