@@ -12,7 +12,8 @@ export default function RegistersData() {
   const handleAPI = async () => {
     const date = router.asPath.split("/")[2];
     const res = await axios.get("/api/service");
-    const filteredData = res.data.filter((item: any) => {
+    const arr = JSON.parse(res.data);
+    const filteredData = arr.filter((item: any) => {
       return format(new Date(item.date), "dd-MM-yyyy").toString() === date;
     });
     setForm(filteredData);
