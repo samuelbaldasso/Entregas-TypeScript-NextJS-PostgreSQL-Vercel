@@ -1,9 +1,20 @@
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-{"formData":[{"title":"Teste 1","date":"2023-07-14","message":"sdsddsdssdsdds"},{"title":"Teste 2222","date":"2023-07-26","message":"dsadsasdasdadasdsa"},{"title":"Teste 666","date":"2023-07-21","message":"sasasasaassa"},{"title":"Teste 111111","date":"2023-07-19","message":"sdsddsddsdsds"},{"title":"Teste Final","date":"2023-07-20","message":"sdsdsd"},{"title":"Teste Eu sou o trem","date":"2023-07-26","message":"dsdsddsds"}]}
-=======
-[{"title":"Teste 2","date":"2023-07-26","message":"dsasdsad"},{"title":"Teste 1","date":"2023-07-28","message":"dssdsdsd"},{"title":"Teste 3","date":"2023-07-20","message":"sdsdsds"},{"title":"Teste 1","date":"2023-07-19","message":"sdssds"},{"title":"Teste 1","date":"2023-07-19","message":"dsdsdssd"},{"title":"Tes","date":"2023-07-20","message":"sdds"},{"title":"Tes","date":"2023-07-04","message":"ss"},{"title":"tes","date":"2023-07-19","message":"ssss"},{"title":"T","date":"2023-07-19","message":"T"}]
->>>>>>> Stashed changes
-=======
-[{"title":"Teste 2","date":"2023-07-26","message":"dsasdsad"},{"title":"Teste 1","date":"2023-07-28","message":"dssdsdsd"},{"title":"Teste 3","date":"2023-07-20","message":"sdsdsds"}]
->>>>>>> ac7f0e4bfd55d4a499c6c2377fb215df291bf713
+[
+    { "title": "Teste 1", "date": "2023-07-14", "message": "sdsddsdssdsdds" },
+    {
+      "title": "Teste 2222",
+      "date": "2023-07-26",
+      "message": "dsadsasdasdadasdsa"
+    },
+    { "title": "Teste 666", "date": "2023-07-21", "message": "sasasasaassa" },
+    {
+      "title": "Teste 111111",
+      "date": "2023-07-19",
+      "message": "sdsddsddsdsds"
+    },
+    { "title": "Teste Final", "date": "2023-07-20", "message": "sdsdsd" },
+    {
+      "title": "Teste Eu sou o trem",
+      "date": "2023-07-26",
+      "message": "dsdsddsds"
+    }
+  ]

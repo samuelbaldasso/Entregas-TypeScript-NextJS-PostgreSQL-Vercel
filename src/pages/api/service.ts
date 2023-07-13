@@ -6,8 +6,8 @@ const filePath = path.join(process.cwd(), '/data/data.json');
 
 async function writeDataToJson(data: any) {
   let json = await readJson();
-  const formData = { formData: [...JSON.parse(json), data] };
-  await fs.writeFile(filePath, JSON.stringify(formData.formData), 'utf-8');
+  const formData = [...JSON.parse(json), data];
+  await fs.writeFile(filePath, formData, 'utf-8');
   console.log('Dados gravados no arquivo JSON com sucesso!');
 }
 
@@ -23,6 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   } else if (req.method === 'GET') {
     const data = await readJson();
     res.status(200).json(data);
+    console.log(data)
   } else {
     throw Error("Método não permitido");
   }
