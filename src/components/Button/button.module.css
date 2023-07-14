@@ -6,9 +6,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: 24px auto 0;
   background-color: blueviolet;
-  margin-bottom: 24px;
   width: 300px;
 }
 

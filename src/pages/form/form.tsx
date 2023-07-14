@@ -63,8 +63,8 @@ export default function Home() {
           <input
             type="date"
             name="date"
+            onKeyDown={(e) => e.preventDefault()}
             placeholder="dd/mm/aaaa"
-            min={0}
             value={formData.date}
             onChange={handleChange}
           />

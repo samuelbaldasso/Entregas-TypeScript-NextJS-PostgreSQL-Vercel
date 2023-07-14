@@ -14,7 +14,10 @@ export default function RegistersData() {
     const res = await axios.get("/api/service");
     const arr = JSON.parse(res.data);
     const filteredData = arr.filter((item: any) => {
-      return format(new Date(item.date), "dd-MM-yyyy").toString() === date;
+      let finalDate = new Date(item.date);
+      let newDay = finalDate.getDate() + 1;
+      let newDate = `${newDay}-0${finalDate.getMonth()}-${finalDate.getFullYear()}`;
+      return newDate === date;
     });
     setForm(filteredData);
   };
