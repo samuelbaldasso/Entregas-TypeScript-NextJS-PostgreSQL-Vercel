@@ -3,28 +3,26 @@ import { useState, useEffect } from "react";
 import styles from "./date.module.css";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { format } from "date-fns";
 
 export default function RegistersData() {
   const [form, setForm] = useState<any>([]);
   const router = useRouter();
 
   const handleAPI = async () => {
-    const date = router.asPath.split("/")[2];
-    const res = await axios.get("/api/service");
-    const arr = JSON.parse(res.data);
-    const filteredData = arr.filter((item: any) => {
-      let finalDate = new Date(item.date);
-      let newDay = finalDate.getDate() + 1;
-      let newDate = `${newDay}-0${finalDate.getMonth()}-${finalDate.getFullYear()}`;
-      return newDate === date;
-    });
-    setForm(filteredData);
+    try {
+      const date = router.query.date as string;
+      const res = await axios.get("/api/service");
+      const arr = JSON.parse(res.data);
+      const filteredData = arr.filter((item: any) => item.date === date);
+      setForm(filteredData);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   useEffect(() => {
     handleAPI();
-  }, [form]);
+  }, [router.query.date]);
 
   return (
     <div>

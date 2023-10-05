@@ -23,7 +23,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   } else if (req.method === 'GET') {
     const data = await readJson();
     res.status(200).json(data);
-    console.log(data)
   } else {
     throw Error("Método não permitido");
   }
