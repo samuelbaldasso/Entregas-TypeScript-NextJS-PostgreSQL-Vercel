@@ -1,15 +1,15 @@
 .block {
   border: none;
   border-radius: 8px;
-  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   margin: 0 auto;
+  padding: 5px;
   background-color: blueviolet;
-  margin-bottom: 24px;
-  max-width: 768px;
+  margin-bottom: 12px;
+  width: 300px;
 }
 
 .block h3 {

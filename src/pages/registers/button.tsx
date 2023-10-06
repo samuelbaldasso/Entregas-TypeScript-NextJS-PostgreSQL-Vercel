@@ -53,8 +53,8 @@ export default function Button() {
     <div>
       <Header />
       {dates.map((date: any) => (
-        <button className={styles.button}>
-          <Link href={`/data/${date}`} key={date}>
+        <button className={styles.button} key={date}>
+          <Link href={`/data/${date}`}>
             <h3>{formatDate(date)}</h3>
           </Link>
         </button>
