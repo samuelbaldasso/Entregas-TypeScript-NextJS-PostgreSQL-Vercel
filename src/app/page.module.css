@@ -8,8 +8,11 @@
 .form {
   border: none;
   color: white;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   max-width: 768px;
-  margin: 0 auto 50px;
+  margin: 0 auto;
 }
 
 .form,
@@ -17,6 +20,7 @@
 .form textarea,
 .form button {
   border: none;
+  padding: 0.5em;
   font-family: "Open Sans", sans-serif;
 }
 
