@@ -1,9 +1,9 @@
 .page {
-  max-width: 100vw;
+  max-width: 768px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  /* padding: 24px; */
+  padding: 24px;
   justify-content: space-around;
   font-family: "Inter", sans-serif;
 }
@@ -17,11 +17,11 @@
 
 .title,
 .link {
-  color: black;
+  color: #fff;
   text-decoration: none;
   font-size: 14px;
 }
 
 .title {
-  font-size: 18px;
+  font-size: 24px;
 }

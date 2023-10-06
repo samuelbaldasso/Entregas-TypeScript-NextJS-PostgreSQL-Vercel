@@ -1,0 +1,6 @@
+.error{
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+}

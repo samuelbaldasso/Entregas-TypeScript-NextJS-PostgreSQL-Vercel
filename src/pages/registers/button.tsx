@@ -1,10 +1,9 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import styles from "./button.module.css";
 import Link from "next/link";
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 import axios from "axios";
+import ErrorText from "@/components/ErrorText/error";
 
 export default function Button() {
   const [form, setForm] = useState<any>([]);
@@ -13,11 +12,11 @@ export default function Button() {
 
   const handleData = async () => {
     let res = await axios.get("/api/service");
-    if (res.data === "[]") {
+    console.log(res.data.rows);
+    if (res.data.rows.length === 0) {
       setVisible(true);
     } else {
-      let arr = JSON.parse(res.data);
-      setForm(arr);
+      setForm(res.data.rows);
       setVisible(false);
     }
   };
@@ -49,16 +48,7 @@ export default function Button() {
   return visible === true ? (
     <>
       <Header />
-      <div
-        style={{
-          color: "red",
-          display: "flex",
-          justifyContent: "center",
-          marginTop: 20,
-        }}
-      >
-        <h3>Não existem tarefas.</h3>
-      </div>
+      <ErrorText phrase={"Não existem tarefas registradas."}/>
     </>
   ) : (
     <div>

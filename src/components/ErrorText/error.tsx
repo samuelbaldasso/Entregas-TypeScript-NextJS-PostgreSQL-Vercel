@@ -1,6 +1,8 @@
-export default function ErrorPage({ phrase }: any) {
+import styles from './error.module.css';
+
+export default function ErrorText({ phrase }: any) {
   return (
-    <div style={{ color: "red", display: "flex", justifyContent: "center" }}>
+    <div className={styles.error}>
       <h3>{phrase}</h3>
     </div>
   );
