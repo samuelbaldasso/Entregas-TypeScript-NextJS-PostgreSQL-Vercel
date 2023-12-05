@@ -18,19 +18,11 @@ export default function Home() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-
-    if (name === "date" && value.length > 10) {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value.slice(0, 10),
-      }));
-    } else {
       setFormData((prevData) => ({
         ...prevData,
         [name]: value,
       }));
-    }
-  };
+    };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,7 +55,7 @@ export default function Home() {
           />
           <label className={styles.legend}>Data</label>
           <input
-            type="date"
+            type="text"
             name="date"
             placeholder="dd/mm/aaaa"
             value={formData.date}

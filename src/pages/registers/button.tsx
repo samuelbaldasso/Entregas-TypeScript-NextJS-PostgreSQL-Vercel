@@ -22,11 +22,10 @@ export default function Button() {
   };
 
   function formatDate(dateString: string): string {
-    const originalDate = new Date(dateString);
-    originalDate.setDate(originalDate.getDate() + 1); // Increase the day value by 1
-    const formattedDate = new Intl.DateTimeFormat().format(originalDate);
-    return formattedDate;
-  }
+    const originalDate = dateString.replace(/\//g, "-");
+    console.log(originalDate);
+    return originalDate;
+  }  
 
   useEffect(() => {
     handleData();
@@ -34,9 +33,9 @@ export default function Button() {
 
   useEffect(() => {
     const sortedForm = [...form].sort((a, b) => {
-      const dateA = new Date(a.date);
-      const dateB = new Date(b.date);
-      return dateA.getTime() - dateB.getTime();
+      const dateA = a.date;
+      const dateB = b.date;
+      return dateA - dateB;
     });
     const uniqueDates = Array.from(
       new Set(sortedForm.map((item: any) => item.date))
@@ -54,8 +53,8 @@ export default function Button() {
       <Header />
       {dates.map((date: any) => (
         <button className={styles.button} key={date}>
-          <Link href={`/data/${date}`}>
-            <h3>{formatDate(date)}</h3>
+          <Link className={styles.link} href={`/data/${formatDate(date)}`}>
+            <h3>{date}</h3>
           </Link>
         </button>
       ))}

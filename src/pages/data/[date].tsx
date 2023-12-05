@@ -12,7 +12,7 @@ export default function RegistersData() {
     const date = router.asPath.split("/")[2];
     const res = await axios.get("/api/service");
     const filteredData = res.data.rows.filter((item: any) => {
-      return item.date === date
+      return item.date === date.replace(/\-/g, "/")
     });
     setForm(filteredData);
   };
