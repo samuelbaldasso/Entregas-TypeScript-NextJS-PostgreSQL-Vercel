@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import DatePicker from "react-datepicker";
