@@ -10,15 +10,12 @@
   color: white;
   width: 700px;
   height: 100%;
-  overflow: hidden;
-  max-width: 300px;
   margin: 0 auto;
 }
 
 .form,
 .form form,
 .form input,
-.datePicker,
 .form textarea,
 .form button {
   border: none;
