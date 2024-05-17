@@ -6,15 +6,10 @@ import axios from "axios";
 
 export default function RegistersData() {
   const [form, setForm] = useState<any>([]);
-  const router = useRouter();
-
+  
   const handleAPI = async () => {
-    const date = router.asPath.split("/")[2];
     const res = await axios.get("/api/service");
-    const filteredData = res.data.rows.filter((item: any) => {
-      return item.date === date.replace(/\-/g, "/")
-    });
-    setForm(filteredData);
+    setForm(res);
   };
 
   useEffect(() => {

@@ -21,11 +21,11 @@ export default function Button() {
     }
   };
 
-  function formatDate(dateString: string): string {
-    const originalDate = dateString.replace(/\//g, "-");
-    console.log(originalDate);
-    return originalDate;
-  }  
+  // function formatDate(dateString: string): string {
+  //   const originalDate = dateString.replace(/\//g, "-");
+  //   console.log(originalDate);
+  //   return originalDate;
+  // }  
 
   useEffect(() => {
     handleData();
@@ -53,7 +53,7 @@ export default function Button() {
       <Header />
       {dates.map((date: any) => (
         <button className={styles.button} key={date}>
-          <Link className={styles.link} href={`/data/${formatDate(date)}`}>
+          <Link className={styles.link} href={`/data/${date}`}>
             <h3>{date}</h3>
           </Link>
         </button>
