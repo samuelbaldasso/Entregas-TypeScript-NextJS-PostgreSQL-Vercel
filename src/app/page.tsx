@@ -2,8 +2,6 @@
 
 import React, { useState } from "react";
 import Header from "../components/Header/Header";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
@@ -12,7 +10,7 @@ export default function Home() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
-    date: new Date(),
+    date: "",
     message: "",
   });
 
@@ -20,36 +18,25 @@ export default function Home() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleDateChange = (date: Date) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      date: date,
-    }));
-  };
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (
       formData.title === "" ||
-      formData.date === null ||
+      formData.date === "" ||
       formData.message === ""
     ) {
       alert("Preencha todos os dados corretamente.");
-      setFormData({ title: "", date: new Date(), message: "" });
+      setFormData({ title: "", date: "", message: "" });
     } else {
-      const formattedDate = formData.date.toISOString().split("T")[0];
-      await axios.post("/api/service", {
-        ...formData,
-        date: formattedDate,
-      });
+      await axios.post("/api/service", formData);
       alert("Seus dados foram salvos.");
-      setFormData({ title: "", date: new Date(), message: "" });
+      setFormData({ title: "", date: "", message: "" });
       router.push("/registers/button");
     }
   };
@@ -67,11 +54,12 @@ export default function Home() {
             onChange={handleChange}
           />
           <label className={styles.legend}>Data</label>
-          <DatePicker
-            className={styles.datePicker}
-            selected={formData.date}
-            onChange={handleDateChange}
-            dateFormat="dd/MM/yyyy"
+          <input
+            type="date"
+            name="date"
+            placeholder="dd/mm/aaaa"
+            value={formData.date}
+            onChange={handleChange}
           />
           <label className={styles.legend}>Descrição</label>
           <textarea
