@@ -16,10 +16,12 @@
 }
 
 .form,
+.form form,
 .form input,
 .form textarea,
 .form button {
   border: none;
+  font-size: 0.8em;
   font-family: "Open Sans", sans-serif;
 }
 
