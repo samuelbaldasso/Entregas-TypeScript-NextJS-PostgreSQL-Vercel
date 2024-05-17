@@ -68,6 +68,7 @@ export default function Home() {
           />
           <label className={styles.legend}>Data</label>
           <DatePicker
+            className={styles.datePicker}
             selected={formData.date}
             onChange={handleDateChange}
             dateFormat="dd/MM/yyyy"
