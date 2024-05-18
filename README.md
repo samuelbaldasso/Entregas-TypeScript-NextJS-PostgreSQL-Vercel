@@ -28,49 +28,10 @@ Este é um projeto que facilita a gestão e entrega de tarefas por squads dentro
 - npm ou yarn
 - PostgreSQL
 
-### Instalação
+### Uso da aplicação
 
-1. Clone o repositório:
-    ```sh
-    git clone https://github.com/samuelbaldasso/Entregas-TypeScript-NextJS-PostgreSQL-Vercel.git
-    cd Entregas-TypeScript-NextJS-PostgreSQL-Vercel
-    ```
+O projeto está publicado via Vercel por esta URL: `entregas-rd-2.vercel.app`
 
-3. Instale as dependências:
-    ```sh
-    npm install
-    # ou
-    yarn install
-    ```
-
-### Desenvolvimento
-
-Para rodar a aplicação em modo de desenvolvimento:
-```sh
-npm run dev
-# ou
-yarn dev
-```
-
-Abra http://localhost:3000 para ver o projeto no navegador.
-
-### Produção
-
-Para gerar a build de produção:
-
-```sh
-npm run build
-# ou
-yarn build
-```
-
-Para iniciar a aplicação em produção:
-
-```sh
-npm start
-# ou
-yarn start
-```
 ---
 
 Desenvolvido com ❤️ por Samuel Baldasso
